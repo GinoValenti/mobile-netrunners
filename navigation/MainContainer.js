@@ -34,26 +34,29 @@ export default function MainContainer() {
 
                 if (rn === homeName) {
                     iconName = focused ? 'home' : 'home-outline'
+                    size = focused ? 35 : 25
                 } else if ( rn === citiesName) {
                     iconName = focused ? 'podium' : 'podium-outline'
+                    size = focused ? 35 : 25
                 } else if ( rn === hotelsName ){
                     iconName = focused ? 'moon' : 'moon-outline'
+                    size = focused ? 35 : 25
                 } else if ( rn === signInName) {
                     iconName = focused ? 'people' : 'people-outline'
+                    size = focused ? 35 : 25
                 } else if ( rn === signUpName) {
                     iconName = focused ? 'person-add' : 'person-add-outline'
+                    size = focused ? 35 : 25
                 }
 
                 return <Ionicons name={iconName} size={size} color={color}></Ionicons>
                 
             },
+            tabBarActiveTintColor: 'firebrick',
+            tabBarInactiveTintColor: '#fff',
+            tabBarLabelStyle: { paddingBottom: 10, fontSize: 10, color: '#fff' },
+            tabBarStyle: { backgroundColor: '#292929', height: 70, padding: 10}
         })}
-        
-        tabBarOptions={{
-            activeTintColor: 'firebrick',
-            inactiveTintColor: 'grey',
-            labelStyle: { fontSize: 16 },
-        }}
         
         >
 
