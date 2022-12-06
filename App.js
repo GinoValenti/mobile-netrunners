@@ -1,14 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, ScrollView } from 'react-native';
-import Home from './components/Home';
+import * as React from 'react'
+import MainContainer from './navigation/MainContainer'
 
 export default function App() {
   return (
-    <>
-    <ScrollView>
-      <Home/>
-    </ScrollView>
-    </>
-  );
+    <MainContainer/>
+  )
 }
-
