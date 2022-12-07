@@ -1,14 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from '../../api/url'
-const getHotels = createAsyncThunk("getHotels", async ({string,valueSearch,valueSelect}) => {
+const getHotels = createAsyncThunk("getHotels", async ({string}) => {
     try {
       const res = await axios.get(
-        `${BASE_URL}/${string}?name=${valueSearch}${valueSelect}`
+        `${BASE_URL}/${string}`
       );
   
       console.log(res.data.allhotels);
-      return { string,valueSearch:valueSearch,valueSelect:valueSelect, hotels: res.data.allhotels };
+      return { string, hotels: res.data.allhotels };
     } catch (error) {
       console.log(error);
       return {

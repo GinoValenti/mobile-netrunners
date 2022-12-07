@@ -8,8 +8,7 @@ const {getHotels, newHotel, getHotelsByUserId,deleteHotel,editHotel,getOnlyHotel
 //hotels un array vacio que posteriormente se va a cargar con el payload de la accion getHotels
 const initialState={
     hotels: [],    
-    valueSearch:'',
-    valueSelect:'',
+
     userId:"",
     hotelsUser:[],
 }
@@ -23,8 +22,7 @@ const hotelsReducer = createReducer(initialState,
             console.log(action)
             return {
                 ...state,
-                valueSearch:action.payload.valueSearch,
-                valueSelect:action.payload.valueSelect,
+              
                 hotels: action.payload.hotels
             }
             
