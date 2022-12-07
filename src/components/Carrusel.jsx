@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 const imagenes = [
-  "https://somoskudasai.com/wp-content/uploads/2021/04/portada_high-school-dxd-6.jpg",
+  "https://i.pinimg.com/originals/bc/2e/e8/bc2ee8ce44463bc1c10c3847b1429b19.jpg",
   "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2425&q=80",
   "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=652&q=80",
   "https://images.unsplash.com/photo-1525183995014-bd94c0750cd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
