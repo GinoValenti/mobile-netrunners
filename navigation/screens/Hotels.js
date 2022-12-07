@@ -11,20 +11,15 @@ export default function Hotels({navigation}) {
   let {getHotels}=hotelsAction
   const dispatch= useDispatch()
  
- 
-  function listen(value){
-    
- 
-  if(value.target.type==="text"){
-      setSearched(value.target.value)
-  }
-}
+
 console.log(searched);
   useEffect(()=>{
     dispatch(getHotels({string:'hotels', valueSearch:searched}))
   },[searched])
   const {hotels} = useSelector((state) => state.hotels); 
- 
+ let listen=(value)=>{
+  setSearched(value);
+ }
 
 
   return (
@@ -34,9 +29,9 @@ console.log(searched);
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:'#fff'}}>
 
     <ImageBackground source={require("./hotel.jpeg")} resizeMode="cover" style={styles.image}>
-      <Text style={styles.text}>The best hotels</Text>
+      <Text style={styles.text}>The best <Text style={styles.HotelText}>hotels </Text></Text>
     </ImageBackground>
-<TextInput onPress={listen} type="text" placeholder='Search a hotel' style={{backgroundColor:"#1111", height:40, margin:15, width:250, borderRadius:20, padding:10}}/>      
+<TextInput onChangeText={listen} type="text" placeholder='Search a hotel' style={{backgroundColor:"#1111", height:40, margin:15, width:250, borderRadius:20, padding:10}}/>      
       {hotels.map((x)=>{
         return(
           <View key={x._id} style={styles.cardContainer}>
@@ -52,7 +47,7 @@ console.log(searched);
       <Button
 style={styles.button}
   title="Learn More"
-  color="#841584"
+  color="firebrick"
   accessibilityLabel="Learn more about this purple button"
 />
           </View>
@@ -63,6 +58,7 @@ style={styles.button}
   )
 }
 const deviceWidth = Math.round(Dimensions.get('window').width)
+const deviceHeight = Math.round(Dimensions.get('window').height)
 const styles = StyleSheet.create({
   cardContainer:{
     width:deviceWidth -25,
@@ -83,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
  
     width:deviceWidth ,
-    height:300,
+    height:deviceWidth,
   
   },
   text: {
@@ -96,5 +92,13 @@ const styles = StyleSheet.create({
   },
   button:{
   borderRadius:20
+  },
+  HotelText:{
+
+    fontSize: 42,
+    lineHeight: 84,
+    fontWeight: "bold",
+    textAlign: "center",
+    color:"firebrick"
   }
 })

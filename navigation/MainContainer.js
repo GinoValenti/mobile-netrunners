@@ -1,10 +1,10 @@
 import * as React from 'react'
-
+import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
+const Stack = createStackNavigator();
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import HomeScreen from './screens/HomeScreen'
@@ -24,6 +24,7 @@ const Tab = createBottomTabNavigator()
 
 export default function MainContainer() {
   return (
+    <>
     <NavigationContainer>
         <Tab.Navigator
         initialRouteName={homeName}
@@ -61,12 +62,18 @@ export default function MainContainer() {
         >
 
             <Tab.Screen name={homeName} component={HomeScreen}/>
+            
             <Tab.Screen name={citiesName} component={Cities} />
             <Tab.Screen name={hotelsName} component={Hotels} />
             <Tab.Screen name={signInName} component={SignIn} />
             <Tab.Screen name={signUpName} component={SignUp} />
 
         </Tab.Navigator>
+
     </NavigationContainer>
+
+
+
+     </>
   )
 }

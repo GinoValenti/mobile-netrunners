@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import * as React from 'react'
 import MainContainer from './navigation/MainContainer'
 import { Provider } from 'react-redux';
@@ -8,6 +9,7 @@ export default function App() {
     <Provider store={store}> 
 
       <MainContainer/>
+      
     </Provider>
   )
 }

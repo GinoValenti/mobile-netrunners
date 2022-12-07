@@ -33,10 +33,10 @@ const titulos = [
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-const ANCHO_CONTENEDOR = width * 0.7;
+const ANCHO_CONTENEDOR = width * 0.5;
 const ESPACIO_CONTENEDOR = (width - ANCHO_CONTENEDOR) / 2;
 const ESPACIO = 10;
-const ALTURA_BACKDROP = height * 1;
+const ALTURA_BACKDROP = height * 0.3;
 
 function Backdrop({ scrollX }) {
   return (
