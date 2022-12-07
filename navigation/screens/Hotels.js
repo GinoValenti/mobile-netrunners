@@ -26,10 +26,15 @@ console.log(hotels);
       {hotels.map((x)=>{
         return(
           <View key={x._id} style={styles.cardContainer}>
-
-
+            
             <Text style={{ fontSize: 22, fontWeight: 'bold', textAlign:"center"}}>{x.name}</Text>
-
+            <Image
+                    style={styles.tinyLogo}
+                    source={{
+                      uri: x.photo[0],
+                    }}
+      />
+            
           </View>
           )
         })} 
@@ -45,5 +50,9 @@ const styles = StyleSheet.create({
     height:200,
     borderRadius:20,
     margin:10
-  }
+  },
+  tinyLogo: {
+    width: deviceWidth -25,
+    height: 150,
+  },
 })
