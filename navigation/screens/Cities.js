@@ -1,4 +1,4 @@
-import { View, Text,StyleSheet,Image, Dimensions , ScrollView,TextInput, ImageBackground, SafeAreaView, FlatList} from 'react-native'
+import { View, Text,StyleSheet,Image, Dimensions , ScrollView,TextInput, ImageBackground, Button} from 'react-native'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import citiesActions from '../../src/redux/actions/citiesActions'
@@ -74,12 +74,19 @@ useEffect(()=>{
               source={{
               uri: x.image,
               }}/>
-          </View>
-          )
+                    <Button
+        style={styles.button}
+          title="Learn More"
+          color="firebrick"
+          accessibilityLabel="Learn more about this purple button"
+          onPress={()=>navigation.navigate("HotelDetails",{productID: x._id})}
+        />
+        </View>
+        )
         }) : <Text>NO XD</Text>
-      }  
-      </View>
-    </ScrollView>
+              }  
+              </View>
+            </ScrollView>
 
   )
 }
@@ -102,6 +109,9 @@ const styles = StyleSheet.create({
     flex: 1,
     height:deviceWidth,
     width:deviceWidth
+  },
+  button: {
+    borderRadius: 20,
   },
   text: {
     flex : 1,
