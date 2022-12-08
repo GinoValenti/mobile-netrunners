@@ -79,11 +79,11 @@ useEffect(()=>{
           title="Learn More"
           color="firebrick"
           accessibilityLabel="Learn more about this purple button"
-          onPress={()=>navigation.navigate("HotelDetails",{productID: x._id})}
+          onPress={()=>navigation.navigate("CitiesDetails",{productID: x._id})}
         />
         </View>
         )
-        }) : <Text>NO XD</Text>
+        }) : <Image style={styles.textNotFound} source={require("./404.png")}/>
               }  
               </View>
             </ScrollView>
@@ -124,5 +124,10 @@ const styles = StyleSheet.create({
   },
   fire: {
     color: 'firebrick'
-  }
+  },
+  textNotFound:{
+    height:400,
+    width:deviceWidth,
+    margin:10
+    }
 })
