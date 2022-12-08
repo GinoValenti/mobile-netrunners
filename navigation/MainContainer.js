@@ -16,7 +16,7 @@ import SignUp from './screens/SignUp'
 const homeName = 'Home'
 const citiesName = 'Cities'
 const hotelsName = 'Hotels'
-const signInName = 'Signin'
+const signInName = 'Sign in'
 const signUpName = 'Signup'
 
 const Tab = createBottomTabNavigator()
