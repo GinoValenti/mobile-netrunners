@@ -29,6 +29,13 @@ export default function MainContainer() {
         <Tab.Navigator 
        
         screenOptions={({route})=> ({
+            tabBarButton: [
+                "HotelDetails"
+              ].includes(route.name)
+                ? () => {
+                    return null;
+                  }
+                : undefined,
             tabBarIcon: ({focused, color, size}) => {
                 let iconName 
                 let rn = route.name
