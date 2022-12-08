@@ -79,7 +79,7 @@ useEffect(()=>{
           title="Learn More"
           color="firebrick"
           accessibilityLabel="Learn more about this purple button"
-          onPress={()=>navigation.navigate("CitiesDetails",{productID: x._id})}
+          onPress={()=>navigation.navigate("CitiesDetails",{productID: x._id, title:x.title, image:x.image, population: x.population})}
         />
         </View>
         )
@@ -99,8 +99,9 @@ const styles = StyleSheet.create({
   },
   tinyLogo: {
     width: deviceWidth -25,
-    height: 180,
-    borderRadius: 20
+    height: 150,
+    borderRadius: 20,
+    marginBottom:10
   },
   container: {
     flex: 1,
