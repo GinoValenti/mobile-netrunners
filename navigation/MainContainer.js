@@ -1,12 +1,12 @@
 import * as React from 'react'
-
+import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
+const Stack = createStackNavigator();
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
+import HotelDetails from './screens/HotelDetails';
 import HomeScreen from './screens/HomeScreen'
 import Cities from './screens/Cities'
 import Hotels from './screens/Hotels'
@@ -24,9 +24,10 @@ const Tab = createBottomTabNavigator()
 
 export default function MainContainer() {
   return (
+    <>
     <NavigationContainer>
-        <Tab.Navigator
-        initialRouteName={homeName}
+        <Tab.Navigator 
+       
         screenOptions={({route})=> ({
             tabBarIcon: ({focused, color, size}) => {
                 let iconName 
@@ -61,6 +62,7 @@ export default function MainContainer() {
         >
 
             <Tab.Screen name={homeName} component={HomeScreen}/>
+           <Tab.Screen name="HotelDetails" component={HotelDetails} ></Tab.Screen>
             <Tab.Screen name={citiesName} component={Cities} />
             <Tab.Screen name={hotelsName} component={Hotels} />
             <Tab.Screen name={signInName} component={SignIn} />
@@ -68,5 +70,9 @@ export default function MainContainer() {
 
         </Tab.Navigator>
     </NavigationContainer>
+
+
+
+     </>
   )
 }
