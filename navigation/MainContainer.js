@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 const Stack = createStackNavigator();
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import HotelDetails from './screens/HotelDetails';
+import CitiesDetails from './screens/CitiesDetails'
 import HomeScreen from './screens/HomeScreen'
 import Cities from './screens/Cities'
 import Hotels from './screens/Hotels'
@@ -40,7 +41,8 @@ export default function MainContainer() {
         screenOptions={({route})=> ({
             tabBarButton: [
                 "HotelDetails",
-                signUp,signIn
+                signUp,signIn,
+                "City"
               ].includes(route.name)
                 ? () => {
                     return null;
@@ -80,6 +82,8 @@ export default function MainContainer() {
 
             <Tab.Screen name={homeName} component={HomeScreen}/>
            <Tab.Screen name="HotelDetails" component={HotelDetails}  options={{unmountOnBlur: true}} ></Tab.Screen>
+         
+            <Tab.Screen name="City" component={CitiesDetails}/>
             <Tab.Screen name={citiesName} component={Cities} />
             <Tab.Screen name={hotelsName} component={Hotels} />
             
