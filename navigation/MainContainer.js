@@ -13,18 +13,27 @@ import Cities from './screens/Cities'
 import Hotels from './screens/Hotels'
 import SignIn from './screens/SignIn'
 import SignUp from './screens/SignUp'
-
+import { useSelector } from 'react-redux';
 const homeName = 'Home'
 const citiesName = 'Cities'
 const hotelsName = 'Hotels'
-const signInName = 'Signin'
+const signInName = 'Sign in'
 const signUpName = 'Signup'
 
 const Tab = createBottomTabNavigator()
 
 
 export default function MainContainer() {
+
+
+    let { logged,photo} = useSelector(store => store.usuario)
+    console.log(photo);
+    let signUp 
+    logged ? signUp = "Signup" : signUp = ""
+    let signIn
+    logged ? signIn = "Sign in" : signIn = ""
   return (
+    
     <>
     <NavigationContainer>
         <Tab.Navigator 
@@ -32,6 +41,7 @@ export default function MainContainer() {
         screenOptions={({route})=> ({
             tabBarButton: [
                 "HotelDetails",
+                signUp,signIn,
                 "City"
               ].includes(route.name)
                 ? () => {
@@ -71,11 +81,15 @@ export default function MainContainer() {
         >
 
             <Tab.Screen name={homeName} component={HomeScreen}/>
-            <Tab.Screen name="HotelDetails" component={HotelDetails}/>
+           <Tab.Screen name="HotelDetails" component={HotelDetails}  options={{unmountOnBlur: true}} ></Tab.Screen>
+         
             <Tab.Screen name="City" component={CitiesDetails}/>
             <Tab.Screen name={citiesName} component={Cities} />
             <Tab.Screen name={hotelsName} component={Hotels} />
+            
+        
             <Tab.Screen name={signInName} component={SignIn} />
+            
             <Tab.Screen name={signUpName} component={SignUp} />
 
         </Tab.Navigator>

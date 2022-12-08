@@ -60,7 +60,7 @@ style={styles.button}
   title="Learn More"
   color="firebrick"
   accessibilityLabel="Learn more about this purple button" 
-  onPress={()=>navigation.navigate("HotelDetails",{productID: x._id, name:x.name, photo:x.photo})}
+  onPress={()=>navigation.navigate("HotelDetails",{productID: x._id, name:x.name, photo:x.photo, capacity:x.capacity})}
 />
           </View>
           )
