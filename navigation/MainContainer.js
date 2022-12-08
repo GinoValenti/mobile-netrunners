@@ -23,8 +23,10 @@ const Tab = createBottomTabNavigator()
 
 
 export default function MainContainer() {
-    let { logged} = useSelector(store => store.usuario)
-    console.log(logged);
+
+
+    let { logged,photo} = useSelector(store => store.usuario)
+    console.log(photo);
     let signUp 
     logged ? signUp = "Signup" : signUp = ""
     let signIn
