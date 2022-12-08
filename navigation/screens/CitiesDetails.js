@@ -1,5 +1,6 @@
 import { View, Text,Image, StyleSheet,Dimensions, ScrollView, Button } from 'react-native'
 import React, {useState , useEffect} from 'react'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { BASE_URL } from '../../src/api/url'
 
@@ -16,6 +17,12 @@ export default function CitiesDetails({route}) {
   },[])
 
   let itinerarie = itineraries.filter(e=>e.cityId==a)
+
+  let { reactions } = useSelector(store=>store.reaction)
+
+  console.log(reactions);
+
+
 
   return (
     <> 

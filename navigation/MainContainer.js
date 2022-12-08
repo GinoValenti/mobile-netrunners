@@ -32,7 +32,7 @@ export default function MainContainer() {
         screenOptions={({route})=> ({
             tabBarButton: [
                 "HotelDetails",
-                "CitiesDetails"
+                "City"
               ].includes(route.name)
                 ? () => {
                     return null;
@@ -72,7 +72,7 @@ export default function MainContainer() {
 
             <Tab.Screen name={homeName} component={HomeScreen}/>
             <Tab.Screen name="HotelDetails" component={HotelDetails}/>
-            <Tab.Screen name="CitiesDetails" component={CitiesDetails}/>
+            <Tab.Screen name="City" component={CitiesDetails}/>
             <Tab.Screen name={citiesName} component={Cities} />
             <Tab.Screen name={hotelsName} component={Hotels} />
             <Tab.Screen name={signInName} component={SignIn} />

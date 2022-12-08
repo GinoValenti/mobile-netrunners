@@ -79,7 +79,7 @@ useEffect(()=>{
           title="Learn More"
           color="firebrick"
           accessibilityLabel="Learn more about this purple button"
-          onPress={()=>navigation.navigate("CitiesDetails",{productID: x._id, title:x.title, image:x.image, population: x.population})}
+          onPress={()=>navigation.navigate("City",{productID: x._id, title:x.title, image:x.image, population: x.population})}
         />
         </View>
         )
