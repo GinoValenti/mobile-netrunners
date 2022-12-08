@@ -4,7 +4,16 @@ import MainContainer from './navigation/MainContainer'
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store'
 import {  ScrollView } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import HotelDetails from './navigation/screens/HotelDetails';
+
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
+const Tab = createBottomTabNavigator()
 export default function App() {
+  const Stack = createStackNavigator();
   return (
     <Provider store={store}> 
 
