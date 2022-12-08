@@ -18,15 +18,13 @@ const citiesReducer = createReducer(initialState,
             console.log(action.payload)
                 return {
                     ...state,
-                    ...action.payload
+                    value: action.payload.value ,
+                    cities: action.payload.cities,
                 }
         })
         .addCase(getCities.fulfilled,(state,action)=>{
-            let categories = Array.from(new Set(action.payload.cities.map(city=>city.continent)))
             return {
                 ...state,
-                value:action.payload.value,
-                categories,
                 cities: action.payload.cities
             }
         })
