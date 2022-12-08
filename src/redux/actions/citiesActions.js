@@ -5,17 +5,17 @@ import { BASE_URL } from "../../api/url";
 // En la UI se dispara la accion, la accion se carga con lo necesario, esa misma accion la recibe
 // el reducer, este toma el state y carga el payload para ir actualizando el state
 
-const getCitiesFilter = createAsyncThunk("getCitiesFilter", async ({ cities, search ,check }) => {
+const getCitiesFilter = createAsyncThunk("getCitiesFilter", async ( searched ) => {
   // getcitiesfilter recibe primero el nombre de la accion , el segundo argumento es una funcion callback asyncronico
   try {
-    console.log(check);
     const res = await axios.get(
-      `${BASE_URL}/${cities}?title=${search}${check.join('')}`
-    );
-
-    return { value: search, cities: res.data.allcities };
+      `${BASE_URL}/cities?title=${searched}`
+      );
+      
+      console.log(res.data.allcities);
+    return { value: searched, cities: res.data.allcities };
   } catch (error) {
-    console.log(error);
+    console.log(error + ' hola, vengo de la linea 17');
     return {
       payload: "Error",
     };
@@ -27,7 +27,6 @@ const getCities = createAsyncThunk("getCities", async (value) => {
       const res = await axios.get(
         `${BASE_URL}/${value}`
       );
-  
       return { value, cities: res.data.allcities };
     } catch (error) {
       console.log(error);

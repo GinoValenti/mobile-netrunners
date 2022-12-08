@@ -15,8 +15,6 @@ export default function Hotels({navigation}) {
   },[])
   const {hotels} = useSelector((state) => state.hotels); 
  
-console.log(hotels);
- 
  
   return (
     <ScrollView> 
