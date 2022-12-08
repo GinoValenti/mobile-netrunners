@@ -3,10 +3,17 @@ import React from 'react'
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import userActions from '../../src/redux/actions/userAction'
 export default function Signin({navigation}) {
-  let {enter}=userActions
+  let { logged,token,id} = useSelector(store => store.usuario)
+
+  console.log(logged);
+  let {enter,enterAgain}=userActions
  const dispatch = useDispatch()
+
+
   const [userInfo, setUserInfo] = useState({
     email:'',
     password:'',
@@ -29,11 +36,11 @@ export default function Signin({navigation}) {
   
     try {
         let res = await dispatch(enter(userInfo))
-        console.log(res)
+        console.log(res.data)
         if (res.payload.success) {
             console.log(res);
             Alert.alert("god")
-           
+            
      redirect()
         }
         else {
@@ -42,9 +49,10 @@ export default function Signin({navigation}) {
     } catch(error) {
         console.log(error.message)
     }
+    const myToken = await AsyncStorage.getItem('token')
+   
 }
 
- console.log(userInfo);
 
 
 
@@ -56,9 +64,9 @@ export default function Signin({navigation}) {
       <Text style={styles.subtitle}> Sign in to your account</Text>
       <View style={styles.containerInput}> 
 <Text style={styles.subtitlee}>email</Text>
-<TextInput   onChangeText={value => handleOnChangeText(value,'email')} placeholder='jhon@email.com' style={styles.TextInput}> </TextInput>
+<TextInput  label="email"  onChangeText={value => handleOnChangeText(value,'email')} placeholder='jhon@email.com' style={styles.TextInput}> </TextInput>
 <Text   style={styles.subtitlee}>password</Text>
-<TextInput onChangeText={value => handleOnChangeText(value,'password')} placeholder='Search a hotel' style={styles.TextInput}> </TextInput>
+<TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='Search a hotel' style={styles.TextInput}> </TextInput>
       <Button style={styles.button}
         title="Sign in"
         color="#B22222"
