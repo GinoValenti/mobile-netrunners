@@ -66,7 +66,7 @@ export default function Signin({navigation}) {
 <Text style={styles.subtitlee}>email</Text>
 <TextInput  label="email"  onChangeText={value => handleOnChangeText(value,'email')} placeholder='jhon@email.com' style={styles.TextInput}> </TextInput>
 <Text   style={styles.subtitlee}>password</Text>
-<TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='Search a hotel' style={styles.TextInput}> </TextInput>
+<TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='password' style={styles.TextInput}> </TextInput>
       <Button style={styles.button}
         title="Sign in"
         color="#B22222"
