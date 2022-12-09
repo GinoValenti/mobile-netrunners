@@ -25,7 +25,6 @@ console.log(show);
     <> 
     <ScrollView> 
 
-
     <View>
     <Image
                     style={styles.tinyLogo}
@@ -34,8 +33,9 @@ console.log(show);
                     }}
       />
           
-      <Text style={styles.text}>{name}</Text>
-      <Text style={styles.texto}>This hotel has a capacity of {capacity}</Text>
+      <Text style={styles.title}>{name}</Text>
+      <Text style={styles.population}> Capacity </Text>
+      <Text style={styles.popnum} >{capacity} guests</Text>
       {show.map(e=><Show  name={e?.name} image={e?.photo} description={e?.description} idShow= {e?._id}/>) }           
         </View>
     </ScrollView>
@@ -43,28 +43,44 @@ console.log(show);
   )
 }
 const deviceWidth = Math.round(Dimensions.get('window').width)
-const deviceHeight = Math.round(Dimensions.get('window').height)
+
 const styles = StyleSheet.create({
 
   tinyLogo: {
     width: deviceWidth ,
-    height: 500,
-   
-  
-  } , text: {
-    color: "black",
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: "bold",
-    textAlign: "center",
-    
+    height: 300,
+    marginBottom:10
   },
-   texto: {
-    color: "grey",
-    fontSize: 15,
-    lineHeight: 84,
-   
-    textAlign: "center",
-    
+  title: {
+    textAlign: 'center',
+    fontSize : 40,
+    fontWeight : '700',
+    letterSpacing : 3
   },
+  itineraryContainer: {
+    backgroundColor: '#F8F9F9'
+  },
+  population: {
+    textAlign: 'center',
+    color: 'firebrick',
+    fontSize: 18,
+    fontWeight: '600'
+  },
+  itineraryPhoto: {
+    height: 250,
+    width: deviceWidth,
+    marginBottom: 30
+  },
+  popnum: {
+    textAlign: 'center'
+  },
+  itineraries: {
+    marginTop: 40,
+
+  },
+  textPop: {
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 19,
+  }
 })

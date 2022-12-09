@@ -32,15 +32,7 @@ console.log(searched);
       <Text style={styles.text}>The best <Text style={styles.HotelText}>hotels </Text></Text>
     </ImageBackground>
 <TextInput onChangeText={listen} type="text" placeholder='Search a hotel' style={{backgroundColor:"#1111", height:40, margin:15, width:250, borderRadius:20, padding:10}}/>      
-      {hotels.length == 0 ? (
-       <Image
-       style={styles.textNotFound}
-       source={require("./404.png")
- 
-       }
-/>
-    )
-    :
+      {
       
       
       hotels.map((x)=>{

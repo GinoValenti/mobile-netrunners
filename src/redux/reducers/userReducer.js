@@ -34,9 +34,10 @@ const userReducer = createReducer (initialState,
             if (success) {
                 let { user,token } = response 
                 AsyncStorage.setItem('token',JSON.stringify({token: {user: token}}))
-                console.log(user);
+                
                 let newState = {
                     ...state,
+                    id:user._id,
                     name: user.name,
                     photo: user.photo,
                     logged: true,

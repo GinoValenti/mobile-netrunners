@@ -25,17 +25,16 @@ export default function NewComment(props) {
 
 
     try {
-      
-      
+
       let res =  await dispatch(postComments({data,token}))
       
      if (res.payload.success){
       
 
- Alert.alert("comment sent")
+ Alert.alert("Comment sent!")
     
      }else{
- Alert.alert("??")
+ Alert.alert("Error please send a valid comment.")
       }
      
    
@@ -49,15 +48,24 @@ let listen=(value)=>{
   setComment(value);
  }
 console.log(userId);
-  return (
-    <View>
-      <TextInput onChangeText={listen} placeholder='Leave a comment' style={{backgroundColor:"#1111", height:40, margin:15, width:400, borderRadius:20, padding:10}}></TextInput>
-      <Pressable style={styles.buttonCustom}  onPress={Submit}>
-            <Text style={styles.textButton}>Send</Text>
-        </Pressable>
+ 
+return (
+  logged == false ?<Text style={styles.errorSing}  >Sing in to comment</Text>:
+    <View  style={styles.commnetContainere}>
+      <TextInput onChangeText={listen} placeholder='Leave a comment' style={{backgroundColor:"#1111",width:300, height:40, margin:15,  borderRadius:20, padding:10}}></TextInput>
+            <Text onPress={Submit} style={styles.textButton}>Send</Text>
+  
+       
     </View>
   )
 }const styles = StyleSheet.create({
+  commnetContainere:{
+flex:1,
+  },errorSing:{
+textAlign:"center",
+fontSize: 16,
+margin:20
+  },
   buttonCustom:{
 
     alignItems: 'center',
@@ -75,6 +83,11 @@ textButton:{
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: 'white',
+    color: 'black',
+    textAlign:"center",
+    position:'absolute',
+left:350,
+top:20
+    
 },
 })

@@ -5,6 +5,7 @@ import { View, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 const Stack = createStackNavigator();
+import { useEffect } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import HotelDetails from './screens/HotelDetails';
 import CitiesDetails from './screens/CitiesDetails'
@@ -13,13 +14,16 @@ import Cities from './screens/Cities'
 import Hotels from './screens/Hotels'
 import SignIn from './screens/SignIn'
 import SignUp from './screens/SignUp'
+import { useSelector, useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import ProfileScreen from './screens/ProfileScreen';
-import { useSelector } from 'react-redux';
+
 const homeName = 'Home'
 const citiesName = 'Cities'
 const hotelsName = 'Hotels'
 const signInName = 'Sign in'
 const signUpName = 'Signup'
+import userActions from '../src/redux/actions/userAction';
 const ProfileName = 'Profile'
 
 const Tab = createBottomTabNavigator()
@@ -27,8 +31,11 @@ const Tab = createBottomTabNavigator()
 
 export default function MainContainer() {
 
+   
+   
 
-    let { logged,photo, token} = useSelector(store => store.usuario)
+
+    let { logged,photo, token,id} = useSelector(store => store.usuario)
     console.log(photo);
     console.log(token);
     let profile
