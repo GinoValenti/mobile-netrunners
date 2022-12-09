@@ -86,8 +86,8 @@ textButton:{
     color: 'black',
     textAlign:"center",
     position:'absolute',
-left:350,
-top:20
+left:318,
+top:23
     
 },
 })

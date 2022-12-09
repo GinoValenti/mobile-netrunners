@@ -1,4 +1,5 @@
-import { View, Text , Image,TextInput,StyleSheet,Dimensions,Alert , Button, ScrollView} from 'react-native'
+import { View, Text , Image,TextInput,StyleSheet,Dimensions,Alert , ScrollView} from 'react-native'
+import { Button } from "@react-native-material/core";
 import React from 'react'
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -61,22 +62,22 @@ export default function Signin({navigation}) {
   return (
     <>
     <ScrollView>
-    <View style={styles.container}>
-<Image source={require("./signin2.png")} style={ styles.image }/>
-      <Text style={styles.title}>Welcome</Text>
-      <Text style={styles.subtitle}> Sign in to your account</Text>
+      <View style={styles.container}>
+        <Image source={require("./signin2.png")} style={ styles.image }/>
+        <Text style={styles.title}>Welcome</Text>
+        <Text style={styles.subtitle}> Sign in to your account</Text>
       <View style={styles.containerInput}> 
-
-<TextInput  label="email"  onChangeText={value => handleOnChangeText(value,'email')} placeholder='jhon@email.com' style={styles.TextInput}></TextInput>
-
-<TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='password' style={styles.TextInput}></TextInput>
-      <Button style={styles.button}
-        title="Sign in"
-        color="#B22222"
-        onPress={singIn}
-      />
+       
+        <TextInput  label="email"  onChangeText={value => handleOnChangeText(value,'email')} placeholder='jhon@email.com' style={styles.TextInput}></TextInput>
+       
+        <TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='Search a hotel' style={styles.TextInput}></TextInput>
+        <Button style={{ margin: 20 }}
+          title="Sign in"
+          color="#B22222"
+          onPress={singIn}
+        />
       </View>
-    </View>
+      </View>
     </ScrollView>
 
        </>
@@ -104,8 +105,6 @@ container:{
   marginLeft:9,
   color:"gray",
 },TextInput:{
-
- 
   padding:10,
   width:deviceWidth -55,
   height:50,
@@ -115,8 +114,8 @@ container:{
   marginBottom:10
 },
 image:{
-width:deviceWidth,
-height:200,
-
+  width:deviceWidth,
+  height:300,
+  marginBottom: -160
 }
 })
