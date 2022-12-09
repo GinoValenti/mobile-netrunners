@@ -98,7 +98,7 @@ export default function MainContainer() {
             <Tab.Screen name={citiesName} component={Cities} />
             <Tab.Screen name={hotelsName} component={Hotels} />
             
-            <Tab.Screen name={ProfileName} component={ProfileScreen} />
+            <Tab.Screen name={ProfileName} component={ProfileScreen} options={{unmountOnBlur: true}} />
         
             <Tab.Screen name={signInName} component={SignIn} />
             

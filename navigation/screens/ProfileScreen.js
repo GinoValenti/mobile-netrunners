@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {DevSettings} from 'react-native'
 import { Button, TextInput } from "@react-native-material/core";
 import {
   StyleSheet,
@@ -6,12 +7,16 @@ import {
   View,
   Image,
   ScrollView,
+  Modal,
+  Pressable,
   TouchableOpacity
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import usersActions from '../../src/redux/actions/usersActions'
 
 export default function ProfileScreen({navigation}) {
+
+  const [modalVisible, setModalVisible] = useState(false);
 
     let dispatch = useDispatch()
 
@@ -26,15 +31,50 @@ export default function ProfileScreen({navigation}) {
         
     }
 
-    async function logOutBtn() {
-        redirect()
-        let res = await dispatch(logOut(token))
+    async function logOutBtn(e) {
+        e.preventDefault()
+        DevSettings.reload()
+        alert('logged out')
+        try {
+          let res = await dispatch(logOut(token))
+          if(res.payload.success) {
+            alert('logged out !')
+            redirect()
+          } else{
+            alert('No puedes irte de aqui >:(')
+          }
+          
+        } catch (error) {
+          console.log(error);
+        }
         console.log(res);
     }
 
     console.log(name);
   return (
     <ScrollView style={styles.container}>
+      <Button title='Edit' onPress={() => setModalVisible(true)} style={styles.editBtn} />
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
           <View style={styles.header}></View>
           <Image style={styles.avatar} source={{uri: photo}}/>
           <View style={styles.body}>
@@ -49,9 +89,55 @@ export default function ProfileScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  },
     header:{
       backgroundColor: "firebrick",
       height:200,
+    },
+    editBtn : {
+      position: 'absolute',
+      zIndex: 2,
+      backgroundColor: 'tomato'
     },
     avatar: {
       width: 130,
