@@ -40,12 +40,12 @@ export default function Signin({navigation}) {
         console.log(res.data)
         if (res.payload.success) {
             console.log(res);
-            Alert.alert("god")
+            Alert.alert("Welcome" + " " + res.payload.response.user.name+"!" + "👋🏻",)
             
      redirect()
         }
         else {
-           Alert.alert("q haces")
+           Alert.alert("Error please enter valid credentials.")
           
         }
     } catch(error) {
@@ -66,10 +66,10 @@ export default function Signin({navigation}) {
       <Text style={styles.title}>Welcome</Text>
       <Text style={styles.subtitle}> Sign in to your account</Text>
       <View style={styles.containerInput}> 
-<Text style={styles.subtitlee}>email</Text>
+
 <TextInput  label="email"  onChangeText={value => handleOnChangeText(value,'email')} placeholder='jhon@email.com' style={styles.TextInput}></TextInput>
-<Text   style={styles.subtitlee}>password</Text>
-<TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='Search a hotel' style={styles.TextInput}></TextInput>
+
+<TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='password' style={styles.TextInput}></TextInput>
       <Button style={styles.button}
         title="Sign in"
         color="#B22222"

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import {DevSettings} from 'react-native'
 import { Button, TextInput } from "@react-native-material/core";
 import {
@@ -9,21 +9,41 @@ import {
   ScrollView,
   Modal,
   Pressable,
+  Alert,
   TouchableOpacity
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import usersActions from '../../src/redux/actions/usersActions'
-
+import userActions from '../../src/redux/actions/userAction';
 export default function ProfileScreen({navigation}) {
+  let{getOneUser,editUser}= userActions
+  let  [reload, setReload] = useState(false)
+  const [userInfo, setUserInfo] = useState({
+    name:'',
+    photo:'',
 
+
+  });
   const [modalVisible, setModalVisible] = useState(false);
 
     let dispatch = useDispatch()
 
     let { logOut } = usersActions
 
-    let { name, photo, token } = useSelector(store => store.usuario)
-
+    let { name, photo, token, id } = useSelector(store => store.usuario)
+    console.log(id);
+    async function getUsers(){
+  
+      await dispatch(getOneUser(id))
+    }
+    
+    
+    useEffect((e)=>{
+      
+      getUsers()
+    },[])
+    
+    
     function redirect(){
         setTimeout(()=>{
           navigation.navigate("Home")
@@ -50,6 +70,34 @@ export default function ProfileScreen({navigation}) {
         console.log(res);
     }
 
+    const handleOnChangeText = (value, fieldName) => {
+      setUserInfo({ ...userInfo, [fieldName]: value.trim() });
+    };
+     console.log(userInfo);
+
+     let listenEdit = async (event) => {
+      event.preventDefault()
+    
+      let data = userInfo
+    console.log(data);
+    if (name === '' || photo === '' || photo === null  ) {
+  alert("You must complete all fields !")
+    } else {
+      try {
+        let res = await dispatch(editUser({id, data,token}))
+    
+        if (res.payload.success){
+          alert("Profile modified")
+          dispatch(getOneUser(id))
+        } else {
+       alert("Error")
+        }
+    
+      } catch(error) {
+        console.log(error.message)
+      }
+    }}
+
     console.log(name);
   return (
     <ScrollView style={styles.container}>
@@ -65,12 +113,20 @@ export default function ProfileScreen({navigation}) {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
             >
               <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <TextInput placeholder='Name' onChangeText={value => handleOnChangeText(value,'name')} style={styles.inputEdit}></TextInput>
+            <TextInput  placeholder='Photo' onChangeText={value => handleOnChangeText(value,'photo')} style={styles.inputEdit}></TextInput>
+            <Pressable
+              style={[styles.buttone, styles.buttonClose]}
+         onPress={listenEdit}
+            >
+              <Text style={styles.textStyle}>Send</Text>
             </Pressable>
           </View>
         </View>
@@ -82,6 +138,7 @@ export default function ProfileScreen({navigation}) {
               <Text style={styles.name}>{name}</Text>
               <Text style={styles.info}>UX Designer / Mobile developer</Text>
               <Button onPress={logOutBtn} title='Log out' style={{ margin: 20, backgroundColor: 'firebrick'}} />
+             
             </View>
         </View>
       </ScrollView>
@@ -99,7 +156,8 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    padding: 25,
+    
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -110,24 +168,40 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
+  inputEdit:{
+width:200,
+backgroundColor:"white",
+margin:10,
+
+  },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
+    position:'absolute',
+    right:20,
+  
+  },
+  buttone:{
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "firebrick",
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
+    
   },
   modalText: {
     marginBottom: 15,
+    marginTop:20,
     textAlign: "center"
   },
     header:{

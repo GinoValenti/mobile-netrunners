@@ -52,7 +52,7 @@ export default function MainContainer() {
        
         screenOptions={({route})=> ({
             tabBarButton: [
-                "HotelDetails",
+                "Hotel",
                 signUp,
                 signIn,
                 "City",
@@ -100,7 +100,7 @@ export default function MainContainer() {
         >
 
             <Tab.Screen name={homeName} component={HomeScreen}/>
-           <Tab.Screen name="HotelDetails" component={HotelDetails}  options={{unmountOnBlur: true}} ></Tab.Screen>
+           <Tab.Screen name="Hotel" component={HotelDetails}  options={{unmountOnBlur: true}} ></Tab.Screen>
          
             <Tab.Screen name="City" component={CitiesDetails}/>
             <Tab.Screen name={citiesName} component={Cities} />

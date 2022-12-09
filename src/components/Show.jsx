@@ -8,6 +8,7 @@ import commentAction from '../redux/actions/commentAction'
 export default function Show(props) {
     let { getAllComments ,deleteAction, editComment} = commentAction;
     let{name,idShow,image}=props
+    let { id } = useSelector(store => store.usuario)
     let { comments} = useSelector(store => store.comments)
     const dispatch = useDispatch()
   async function getHotels(){
@@ -42,7 +43,7 @@ return(
         <Text style={styles.Comment}>
             {x?.comment}
         </Text>
-        <Image style={styles.user} source={{uri:x?.photo}}></Image>
+       {id === x?.userId ? <Image style={styles.userLogged} source={{uri:x?.photo}}></Image> :<Image style={styles.user} source={{uri:x?.photo}}></Image>}
       </View>
 )
     })}  
@@ -83,9 +84,15 @@ const styles = StyleSheet.create({
     width:100,
     height:100
     ,borderRadius: 180,
-    borderColor: 'gold',
+  
     borderWidth: 5,
    
+  },userLogged:{
+    width:100,
+    height:100
+    ,borderRadius: 180,
+    borderColor: 'firebrick',
+    borderWidth: 5,
   }
   
 })
