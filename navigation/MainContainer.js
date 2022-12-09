@@ -13,12 +13,14 @@ import Cities from './screens/Cities'
 import Hotels from './screens/Hotels'
 import SignIn from './screens/SignIn'
 import SignUp from './screens/SignUp'
+import ProfileScreen from './screens/ProfileScreen';
 import { useSelector } from 'react-redux';
 const homeName = 'Home'
 const citiesName = 'Cities'
 const hotelsName = 'Hotels'
 const signInName = 'Sign in'
 const signUpName = 'Signup'
+const ProfileName = 'Profile'
 
 const Tab = createBottomTabNavigator()
 
@@ -26,12 +28,15 @@ const Tab = createBottomTabNavigator()
 export default function MainContainer() {
 
 
-    let { logged,photo} = useSelector(store => store.usuario)
+    let { logged,photo, token} = useSelector(store => store.usuario)
     console.log(photo);
+    console.log(token);
+    let profile
+    !logged ? profile = 'Profile' : profile = ''
     let signUp 
-    logged ? signUp = "Signup" : signUp = ""
+    logged  ? signUp = "Signup" : signUp = ""
     let signIn
-    logged ? signIn = "Sign in" : signIn = ""
+    logged  ? signIn = "Sign in" : signIn = ""
   return (
     
     <>
@@ -42,7 +47,8 @@ export default function MainContainer() {
             tabBarButton: [
                 "HotelDetails",
                 signUp,signIn,
-                "City"
+                "City",
+                profile
               ].includes(route.name)
                 ? () => {
                     return null;
@@ -67,7 +73,12 @@ export default function MainContainer() {
                 } else if ( rn === signUpName) {
                     iconName = focused ? 'person-add' : 'person-add-outline'
                     size = focused ? 35 : 25
+                } else if ( rn === ProfileName) {
+                    iconName = focused ? 'person' : 'person-outline'
+                    size = focused ? 35 : 25
                 }
+                
+                
 
                 return <Ionicons name={iconName} size={size} color={color}></Ionicons>
                 
@@ -87,6 +98,7 @@ export default function MainContainer() {
             <Tab.Screen name={citiesName} component={Cities} />
             <Tab.Screen name={hotelsName} component={Hotels} />
             
+            <Tab.Screen name={ProfileName} component={ProfileScreen} />
         
             <Tab.Screen name={signInName} component={SignIn} />
             

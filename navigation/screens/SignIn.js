@@ -1,4 +1,4 @@
-import { View, Text , Image,TextInput,StyleSheet,Dimensions,Alert , Button} from 'react-native'
+import { View, Text , Image,TextInput,StyleSheet,Dimensions,Alert , Button, ScrollView} from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -33,6 +33,7 @@ export default function Signin({navigation}) {
   async function singIn(event) {
     event.preventDefault()
    
+    console.log(userInfo);
   
     try {
         let res = await dispatch(enter(userInfo))
@@ -45,9 +46,10 @@ export default function Signin({navigation}) {
         }
         else {
            Alert.alert("q haces")
+          
         }
     } catch(error) {
-        console.log(error.message)
+        console.log(error.message + 'hola')
     }
     const myToken = await AsyncStorage.getItem('token')
    
@@ -58,15 +60,16 @@ export default function Signin({navigation}) {
 
   return (
     <>
+    <ScrollView>
     <View style={styles.container}>
 <Image source={require("./signin2.png")} style={ styles.image }/>
       <Text style={styles.title}>Welcome</Text>
       <Text style={styles.subtitle}> Sign in to your account</Text>
       <View style={styles.containerInput}> 
 <Text style={styles.subtitlee}>email</Text>
-<TextInput  label="email"  onChangeText={value => handleOnChangeText(value,'email')} placeholder='jhon@email.com' style={styles.TextInput}> </TextInput>
+<TextInput  label="email"  onChangeText={value => handleOnChangeText(value,'email')} placeholder='jhon@email.com' style={styles.TextInput}></TextInput>
 <Text   style={styles.subtitlee}>password</Text>
-<TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='Search a hotel' style={styles.TextInput}> </TextInput>
+<TextInput secureTextEntry={true} onChangeText={value => handleOnChangeText(value,'password')} placeholder='Search a hotel' style={styles.TextInput}></TextInput>
       <Button style={styles.button}
         title="Sign in"
         color="#B22222"
@@ -74,6 +77,8 @@ export default function Signin({navigation}) {
       />
       </View>
     </View>
+    </ScrollView>
+
        </>
   )
 }
@@ -108,10 +113,6 @@ container:{
   marginTop:20,
   backgroundColor:"#fff",
   marginBottom:10
-},containerInput:{
-  
-  marginBottom:105,
-
 },
 image:{
 width:deviceWidth,
