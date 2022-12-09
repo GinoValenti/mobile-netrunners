@@ -46,7 +46,8 @@ export default function MainContainer() {
         screenOptions={({route})=> ({
             tabBarButton: [
                 "HotelDetails",
-                signUp,signIn,
+                signUp,
+                signIn,
                 "City",
                 profile
               ].includes(route.name)
