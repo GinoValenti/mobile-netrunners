@@ -84,7 +84,7 @@ const userReducer = createReducer (initialState,
         const {success, response} = action.payload
 
         if (success){
-            localStorage.removeItem('token')
+            AsyncStorage.removeItem('token',JSON.stringify({token: {user: token}}))
             let newState = {
                 ...state,
                 name : '',

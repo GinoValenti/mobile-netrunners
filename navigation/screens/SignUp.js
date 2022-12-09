@@ -45,7 +45,7 @@ export default function Signup({navigation}) {
   console.log(name);
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the photo library
+
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -70,6 +70,7 @@ export default function Signup({navigation}) {
         <TextInput onChangeText={setEmail} style={styles.inputUp} color='firebrick' placeholder='Email'  />
         <TextInput onChangeText={setPassword} style={styles.inputUp} color='firebrick' secureTextEntry={true} placeholder='Password'  />
         <Button title='pick photo' onPress={pickImage} style={{margin: 30, backgroundColor: 'firebrick'}} />
+        <Button title='Sign up' onPress={createNewUser} style={{margin: 20 , backgroundColor: 'firebrick'}} />
         <Button title='Sign up' onPress={createNewUser} style={{margin: 20 , backgroundColor: 'firebrick'}} />
       </ScrollView>
     </ImageBackground>
