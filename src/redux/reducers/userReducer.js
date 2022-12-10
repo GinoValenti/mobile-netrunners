@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import userActions from "../actions/userAction";
 import usersActions from "../actions/usersActions";
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const { newUser, logOut } = usersActions
 const {enter,enterAgain,getOneUser,editUser} = userActions
 const initialState ={
@@ -29,19 +30,19 @@ const userReducer = createReducer (initialState,
         .addCase(enter.fulfilled, (state, action) => {
             //console.log(action.payload.response)
             const { success,response } = action.payload
-            console.log(action.payload);
+           
             if (success) {
-                let { user,token } = response //este token es el codigo que viene del backend
-                localStorage.setItem('token',JSON.stringify({token: {user: token}})) //este objeto token va a guardar
-                //la propiedad con el nombre del tipo de token y el token que guarda
+                let { user,token } = response 
+                AsyncStorage.setItem('token',JSON.stringify({token: {user: token}}))
+                
                 let newState = {
                     ...state,
+                    id:user._id,
                     name: user.name,
                     photo: user.photo,
                     logged: true,
                     role: user.role,
-                    token: token
-                    
+                    token: token,
                 }
                 return newState
             } else {
@@ -83,7 +84,7 @@ const userReducer = createReducer (initialState,
         const {success, response} = action.payload
 
         if (success){
-            localStorage.removeItem('token')
+            AsyncStorage.removeItem('token',JSON.stringify({token: {user: token}}))
             let newState = {
                 ...state,
                 name : '',
